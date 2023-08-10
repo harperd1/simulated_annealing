@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Simualted Annealing</title>
+    <link rel="icon" href="">
+
+    <!-- CSS -->
+    <link href="libraries/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+  </head>
+
+<main>
+
+
+  <div class="container">
+
+    <div class="row justify-content-md-center">
+      <p>Simulation of Magnetic Domains</p>
+    </div>
+
+    <div class="row justify-content-md-center">
+
+      <div class="col-md-4 col-12">
+        <div class='row justify-content-md-center'>
+          <span id="stepsPerFrameSpan">Simulation Steps per Frame</span>
+        </div>
+        <div class='row justify-content-md-center'>
+          <input type="range" min="10" max="500" value="100" step="10" id="stepsPerFrame" oninput="foo()">
+        </div>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <div class='row justify-content-md-center'>
+          <span id="minTimePerFrameSpan">Minimum Time per Frame</span>
+        </div>
+        <div class='row justify-content-md-center'>
+          <input type="range" min="10" max="500" value="100" step="10" id="minTimePerFrame" oninput="foo()">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row justify-content-md-center">
+
+      <div class="col-md-4 col-12">
+        <div class='row justify-content-md-center'>
+          <span id="temperatureSpan">Temperature</span>
+        </div>
+        <div class='row justify-content-md-center'>
+          <input type="range" min="0" max="500" value="100" step="11" id="temperture" oninput="foo()">
+        </div>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <div class='row justify-content-md-center'>
+          <span id="externalFieldSpan">External Field</span>
+        </div>
+        <div class='row justify-content-md-center'>
+          <input type="range" min="0" max="500" value="100" step="11" id="externalField" oninput="foo()">
+        </div>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <div class='row justify-content-md-center'>
+          <span id="pairingEnergySpan">Pairing Energy</span>
+        </div>
+        <div class='row justify-content-md-center'>
+          <input type="range" min="0" max="500" value="100" step="11" id="pairingEnergy" oninput="foo()">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container" id = "simReportingBox">
+    <div class="row justify-content-md-center" id="reportingRow0">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox0"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox1"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox2"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox3"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox4"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox5"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox6"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox7"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox8"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox9"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow1">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox10"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox11"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox12"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox13"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox14"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox15"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox16"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox17"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox18"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox19"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow2">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox20"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox21"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox22"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox23"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox24"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox25"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox26"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox27"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox28"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox29"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow3">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox30"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox31"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox32"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox33"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox34"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox35"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox36"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox37"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox38"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox39"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow4">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox40"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox41"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox42"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox43"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox44"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox45"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox46"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox47"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox48"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox49"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow5">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox50"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox51"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox52"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox53"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox54"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox55"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox56"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox57"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox58"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox59"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow6">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox60"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox61"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox62"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox63"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox64"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox65"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox66"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox67"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox68"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox69"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow7">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox70"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox71"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox72"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox73"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox74"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox75"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox76"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox77"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox78"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox79"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow8">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox80"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox81"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox82"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox83"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox84"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox85"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox86"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox87"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox88"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox89"></div></div>
+    </div>
+    <div class="row justify-content-md-center" id="reportingRow9">
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox90"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox91"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox92"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox93"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox94"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox95"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox96"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox97"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox98"></div></div>
+      <div class="col1 col-sm-1"><div class="reportingSquare spinUp" id="reportingBox99"></div></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Import boostrap javascript -->
+<script src="libraries/bootstrap/jquery-3.5.1.slim.min.js"></script>
+<script src="libraries/bootstrap/bootstrap.js"></script>
+
+<script>
+  function foo() {
+    pass
+  }
+</script>
+
+</html>
+
+
+
+

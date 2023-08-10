@@ -1,0 +1,5 @@
+To get web assembly to work:
+    1. add " wasm-bindgen = "0.2.84" " to the dependencies list in Cargo.toml
+    2. put " use wasm_bindgen::prelude::*; " at the top of the script
+    3. put " #[wasm_bindgen] " above the variables to be accessible in the web assembly
+    4. build with wasm-pack instead of cargo " wasm-pack build "

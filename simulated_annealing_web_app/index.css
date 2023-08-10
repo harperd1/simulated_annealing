@@ -1,0 +1,13 @@
+.reportingSquare {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.spinUp {
+    background-color: gray;
+}
