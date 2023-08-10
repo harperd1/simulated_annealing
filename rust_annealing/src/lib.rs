@@ -35,9 +35,10 @@ pub struct Grid {
     external_field: f64, // Positive values lower energy for the "U" state
 }
 
+#[wasm_bindgen]
 impl Grid {
 
-    fn new() -> Grid {
+    pub fn new() -> Grid {
         let mut grid = Grid {
             width: 10,
             height: 10,
@@ -112,19 +113,31 @@ impl Grid {
         score
     }
 
-    fn set_temperature(&mut self, temperature: f64) {
+    pub fn set_temperature(&mut self, temperature: f64) {
         self.temperature = temperature;
     }
 
-    fn set_pairing_energy(&mut self, pairing_energy: f64) {
+    pub fn return_temperature(&self) -> f64 {
+        self.temperature
+    }
+
+    pub fn set_pairing_energy(&mut self, pairing_energy: f64) {
         self.pairing_energy = pairing_energy;
     }
 
-    fn set_external_field(&mut self, external_field: f64) {
+    pub fn return_pairing_energy(&self) -> f64 {
+        self.pairing_energy
+    }
+
+    pub fn set_external_field(&mut self, external_field: f64) {
         self.external_field = external_field;
     }
 
-    fn advance(&mut self) -> f64 {
+    pub fn return_external_field(&self) -> f64 {
+        self.external_field
+    }
+
+    pub fn advance(&mut self) -> f64 {
         let old_energy = self.score();
         let mutation_index: usize = rand::thread_rng().gen_range(1..self.cells.len());
         let new_energy = self.score_mutation(mutation_index);
@@ -143,6 +156,20 @@ impl Grid {
         }
         final_energy
     }
+
+    pub fn return_state(&self) -> Vec<i32> {
+
+        let mut results: Vec<i32> = Vec::new();
+        for i in &self.cells {
+            if i.state == 'U' {
+                results.push(1)
+            } else {
+                results.push(-1)
+            }
+        }
+        results
+    }
+
 }
 
 
