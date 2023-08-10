@@ -10,10 +10,10 @@
     <!-- CSS -->
     <link href="libraries/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
+
   </head>
 
 <main>
-
 
   <div class="container">
 
@@ -28,7 +28,7 @@
           <span id="stepsPerFrameSpan">Simulation Steps per Frame</span>
         </div>
         <div class='row justify-content-md-center'>
-          <input type="range" min="10" max="500" value="100" step="10" id="stepsPerFrame" oninput="foo()">
+          <input type="range" min="10" max="100" value="30" step="10" id="stepsPerFrame">
         </div>
       </div>
 
@@ -37,7 +37,7 @@
           <span id="minTimePerFrameSpan">Minimum Time per Frame</span>
         </div>
         <div class='row justify-content-md-center'>
-          <input type="range" min="10" max="500" value="100" step="10" id="minTimePerFrame" oninput="foo()">
+          <input type="range" min=".05" max="5" value="1" step=".05" id="minTimePerFrame">
         </div>
       </div>
 
@@ -200,13 +200,15 @@
     </div>
   </div>
 
+<button id='Start/Stop Button'>Start Simulation</button>
+
 </main>
 
 <!-- Import boostrap javascript -->
 <script src="libraries/bootstrap/jquery-3.5.1.slim.min.js"></script>
 <script src="libraries/bootstrap/bootstrap.js"></script>
 
-<script type= "module" src="index.js"></script>
+<script type="module" src="index.js"></script>
 
 </html>
 
